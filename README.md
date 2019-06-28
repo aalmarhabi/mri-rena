@@ -1,5 +1,5 @@
-# ([a link](https://code-eng.github.io/mri-rena/)) Fast Detection of Brains with Abnormalities Using Recursive Nearest Agglomerative Clustering project
-
+# ([Website](https://code-eng.github.io/mri-rena/)) Fast Detection of Brains with Abnormalities Using Recursive Nearest Agglomerative Clustering project
+This the repo for the project website.
 # Requirement
 ```
 python==3.6
