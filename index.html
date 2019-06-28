@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+    <title>Introduction | Fast Detection of Brains with Abnormalities Using Recursive Nearest Agglomerative Clustering</title>
+    <meta name="generator" content="Jekyll v3.8.5" />
+    <meta property="og:title" content="Introduction" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="Alhussain Almarhabi1 , Anand Joshi2 , Sergul Aydore1 1Stevens Institute of Technology, Hoboken, NJ, 2University of Southern California, Los Angeles, CA … *this project was …" />
+
+    <link rel="canonical" href="http://localhost:4000/" />
+    <meta property="og:url" content="http://localhost:4000/" />
+    <meta property="og:site_name" content="Fast Detection of Brains with Abnormalities Using Recursive Nearest Agglomerative Clustering" />
+    <script type="application/ld+json">
+    {"name":"Fast Detection of Brains with Abnormalities Using Recursive Nearest Agglomerative Clustering","description":"Alhussain Almarhabi1 , Anand Joshi2 , Sergul Aydore1 1Stevens Institute of Technology, Hoboken, NJ, 2University of Southern California, Los Angeles, CA … *this project was …","@type":"WebSite","url":"http://localhost:4000/","headline":"Introduction","@context":"http://schema.org"}</script>
+
+    <!-- This is for math latex script-->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+      
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" type="text/css" href="./style.css">  
+  </head>
+    
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Fast Detection of Brains with Abnormalities Using Recursive Nearest Agglomerative Clustering</h1>
+      <h2 class="project-tagline">Alhussain Almarhabi<sup>1</sup> , Anand Joshi<sup>2</sup> , Sergul Aydore<sup>1</sup> 
+          <br><sup>1</sup>Stevens Institute of Technology, Hoboken, NJ, <sup>2</sup>University of Southern California, Los Angeles, CA 
+          <br><sup>* This project was presented at OHBM 2019 conference poster presentaion by prof. Anand</sup></h2>
+      
+        <a href="https://github.com/code-Eng/mri-rena" class="btn">View on GitHub</a>
+      
+      
+    </section>
+
+<section class="main-content">
+      
+<h1 id="introduction" style="text-align: center">- Introduction -</h1>
+<p style="text-align: justify">
+Navigate the Github page to understand the concept of the project and use Github folder to check out the code (comming soon) and test it. The code will not be ready to run, you will need to obtain your data to run the program. The objective of this project is to develop an unsupervised machine learning technique
+to detect abnormal brain images from a dataset of images using least amount of preprocessing
+and computation. For group neuroimaging studies involving thousands of
+brain images, it is important to carefully identify and inspect such brain images before
+including them in the study. Typically, physicians/researchers examine the images
+manually to identify abnormalities, which is a tedious and laborious task for a large
+number of scans. Methods for efficient and accurate automation of this process are
+lacking and are necessary. We proposed a method based on recursive nearest
+agglomerative clustering in a population, we assume that the abnormal regions of the
+brain differ from patient to patient. Therefore, the summary of all brain images can
+reflect the healthy brain structure. To demonstrate the effectiveness of our approach,
+we used magnetic resonance imaging (MRI) images of 100 patients with traumatic brain
+injuries (TBI) from the tracktbi pilot dataset [6]</p>
+<h1 id="recursive-nearest-agglomeration" style="text-align: center">- Recursive Nearest Agglomeration -</h1>
+<p style="text-align: justify">Recursive nearest agglomeration (ReNA) is a fast hierarchical clustering algo-
+rithm for approximating data that contains structure[2]. ReNA fundamentally re-
+lies on feature grouping and nearest neighborhood graphs. For high-dimensional
+datasets, feature grouping is widely used in the feld of signal processing, pat-
+tern recognition, and computer vision for data approximation and feature selection [4]. In addition, applying feature grouping to high-dimensional data is a useful tool for reducing the complexity of computation and improving the stability of feature selection [3]. To apply dimensional reduction via feature grouping,
+we design a feature grouping matrix <script type="math/tex">\phi_{FG} \in R^{kxp}</script> where <script type="math/tex">k</script> corresponds to the number of clusters and p is the number of features/voxels. To obtain the re-
+duced version of sample/image <script type="math/tex">x_{i} \in R^{p}; i = 1, ..., n</script> we use equation 1 and for
+    reconstructed version of the sample/image xi, we use equation 2.</p>
+    
+<br>
+<center>
+    <script type="math/tex">\phi_{FG} x \in R^{k}  \tag 1</script> 
+</center>  
+<br>
+<center>
+    <script type="math/tex">\phi_{FG}^{T}\phi_{FG} x \in R^{p} \tag 2</script> 
+</center><br>
+
+<img src="./images/ReAN_architectire_img.png" >
+<figcaption style="text-align: justify"> Fig.1: Illustration of training to obtain the clusters of the features in the dataset using ReNA and the process of reconstruction for a given brain image after training.</figcaption>
+        
+<p style="text-align: justify">
+ReNA uses nearest neighborhood graphs to design the feature grouping matrix <script type="math/tex">\phi_{FG}</script> that projects data into lower dimensional space. <script type="math/tex">\alpha</script> -nearest neighbor graphs
+tend to percolate for <script type="math/tex">\alpha \geq 2</script>, therefore ReNA algorithm applies first nearest
+neighbor graphs recursively until the desired number of clusters is reached [3].
+Overall ReNA has two stages. First, it starts by initializing the number of clusters
+k equal to the number of features/voxels p similar to a bottom-up approach in
+clustering. In addition to initial clusters, it denes an adjacent sparse matrix <script type="math/tex">G \in \{0,1\}^{pxp}</script> for the graph g ,e.g., the topological structure of 3D MRI. The second stage applies the nearest neighborhood graphs to build a similarity graph
+that encodes affnity between features. Then, it recursively updates the clusters until reaching the desired number of clusters k. To summarize, ReNA performs four steps repeatably to compute the clusters of features: (1) graph the representation <strong>X</strong> data matrix that is 2D or 3D of MRI image and <strong>G</strong> matrix that encode the associated connectivity of matrix <strong>X</strong>. (2) fnding first nearest neigbors via a distance metric (3) computing the clusters (4) reduction of graph and topology. The important key point of ReNA is that it is fast while avoiding percolation and designed for data that follow a specific
+structure.</p>
+        
+<h1 id="approach" style="text-align: center">- Approach -</h1>
+<h2 id="data-preprocessing" style="text-align: center">Data Preprocessing</h2>
+<p style="text-align: justify">Figure 2 shows the method workflow of our approach. We used T1-weighted, T2-
+weighted, and FLAIR MRI sequences for each subject, which were pre-processed by
+performing skull removal using BrainSuite [3] followed by alignment to MNI atlas. Each
+image was then resampled to a shared space of 91x109x91 with 2mm isotropic voxels
+using Nilearn: Machine Learning for Neuro-Imaging in Python software [1]. After
+transforming to 1D, each image is represented by an array of 270806 voxels. We
+concatenate these arrays that result in 3N x 270806, where N is the number of subjects
+and the number of images per subject is three since we use T1, T2, and FLAIR images.</p>
+<div id="imgtitle">
+<p><center><b>Data preprocessing for single subject</b></center></p> 
+<img src="./images/one%20subject_higher%20resolution.jpg">
+<p style="color: #ea2727"><center><b>Computing the clusters using ReNA</b></center></p>         
+<img src="./images/obtain%20cluster_higher%20resolution.jpg">
+</div>
+        
+<h2 id="methods" style="text-align: center">Methods</h2>
+<p style="text-align: justify">After applying the preprocessing on the dataset, we then implement the ReNA
+algorithm, which defines a projection to a space of 54160 voxels (approximately 20% of
+the original images). Each image is reconstructed back to the original space of 270806
+voxels. We compute the mean squared error (MSE) between the original images and
+the reconstructed images across voxels. Finally, we use the average of these MSEs
+across T1, T2, and FLAIR images per subject as a metric to quantify and examine
+abnormality of the brain images.</p>
+
+<div id="imgtitle">
+<p style="color: #ea2727"><center><b>Computing the approximated images</b></center></p>
+<img src="./images/use%20rena_higher%20resolution.jpg">
+<p style="color: #ea2727"><center><b>Computing MSE of the approximation</b></center></p>         
+<img src="./images/use%20mse_higher%20resolution%20.jpg"> 
+</div>
+<figcaption style="text-align: justify"> Fig.2: Workflow of Our Approach, broken down into four steps which are: (1) Data preprocessing for single subject (2) Computing the clusters using ReNA (3) Computing the approximated images (4) Computing MSE of the approximation </figcaption>
+
+<h1 id="results" style="text-align: center">- Results -</h1>
+<p style="text-align: justify">We plot averaged MSE across three modalities for each subject in descending order (Fig 3). After examining these MSEs, it was found that the subjects with the highest MSE had large ventricles, hemorrhages and lesions in their brains. On the other hand,
+subjects with the smallest MSEs have been found to have healthier brains (Fig. 3). Note that these analyses are handled within a few minutes (less than 1 minute of ReNA execution, 5 minute total) on a standard computer that shows the computational efficiency of the approach.</p>
+
+<img src="./images/Results_image.jpg">
+<figcaption style="text-align: justify"> Fig.3: Analysis of MSEs across subjects</figcaption>
+    
+<h1 id="conclusion" style="text-align: center">- Conclusion -</h1>
+<p style="text-align: justify">We proposed a fast unsupervised approach to detect abnormalities in brain images
+using a fast dimensionality reduction technique based on feature grouping. The
+method can be run on the original scan with least amount of preprocessing. Our
+results demonstrate the computational efficiency and light system requirements for
+the proposed approach. We will make this tool available as an open source software
+and envision that large population studies would incorporate this as a standard
+screening tool to identify outlier subjects.</p>
+
+<h1 id="reference" style="text-align: center">- Reference -</h1>
+<p style="text-align: justify">[1] Abraham, A. P. (2014), ‘Machine learning for neuroimaging with scikit-learn’, Frontiers in neuroinformatics, vol. 8, pp. 14
+<br>[2] Hoyos-Idrobo, A. et al.: Recursive Nearest Agglomeration (ReNA): Fast Clustering
+for Approximation of Structured Signals. IEEE Transactions on Pattern Analysis
+and Machine Intelligence. 41, 3, 669681 (2019).
+<br>[3] P. Cunningham, J.P., Ghahramani, Z.: Linear Dimensionality Reduction:Survey,
+Insights, and Generalizations. Journal of Machine Learning Research (2015).
+<br>[4] Garca-Torres, M., Gmez-Vela, F., Melin-Batista, B., Moreno-Vega, J.M.: High-
+dimensional feature selection via feature grouping: A Variable Neighborhood Search
+approach. Information Sciences. 326, 102118 (2016).
+<br>[5] Shattuck, D.W. (2000), ‘BrainSuite: An automated cortical surface identification tool’, International Conference on Medical Image Computing and Computer-Assisted Intervention, vol. 6, no. 2, pp. 129-142
+<br>[6] Yue, J. K. (2013), ‘Transforming research and clinical knowledge in traumatic brain injury pilot: multicenter implementation of the common data elements for traumatic brain injury,’ Journal of neurotrauma, vol. 30, no. 22, pp. 1831-1834</p>
+
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/code-Eng/mri-rena">mri-rena</a> is maintained by <a href="https://github.com/code-Eng">aalmarhabi</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+  </body>
+</html>
